@@ -23,6 +23,21 @@ import (
 //  3. command interface to create ANY entity quickly,
 //     probably REST API + simple web-page.
 
+/*
+Connector example:
+	// create gRPC client **without** TLS credentials
+	cc, _ := xgrpc.NewClient(ctx, "localhost:8989", nil)
+
+	// create market client
+	cli := sonm.NewMarketClient(cc)
+
+	// wrap context with "from" field into their metadata
+	ctx = metadata.NewOutgoingContext(ctx, metadata.New(map[string]string{"from": "0x42..."}))
+
+	// create order on fake market
+	cli.CreateOrder(ctx, &sonm.BidOrder{...})
+*/
+
 func main() {
 	market := newFakeMarket()
 
